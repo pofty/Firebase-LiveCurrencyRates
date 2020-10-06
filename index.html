@@ -6,7 +6,11 @@
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   text-align: center;
-  width: 250px;
+  width: 350px;
+  
+  text-align: center;
+
+  
 }
 
 #customers td, #customers th {
@@ -38,7 +42,68 @@
 .currencyImageAndName {
   text-align: left;
 }
+
+#zeroCom {
+
+
+  padding: 10px;
+  text-align: center;
+}
+
 </style>
+
+<style>
+
+.loading {
+  font-family: "Arial Black", "Arial Bold", Gadget, sans-serif;
+  text-transform:uppercase;
+  width:250px;
+  text-align:center;
+  line-height:10px;
+  position:absolute;
+ text-align: center;
+  margin:auto;
+  padding-left: 50px;
+
+  
+
+}
+
+.loading span {
+  position:relative;
+  z-index:999;
+  color:#ffff;
+}
+.loading:before {
+  content:'';
+  background:#000;
+  width:228px;
+  height:36px;
+  display:block;
+  position:absolute;
+  top:0; bottom:0;
+  margin:auto;
+  animation:2s loadingBefore infinite ease-in-out;
+   padding-left: 40px;
+
+}
+
+@keyframes loadingBefore {
+  0%   {transform:translateX(-14px);}
+  50%  {transform:translateX(14px);}
+  100% {transform:translateX(-14px);}
+}
+
+
+
+
+@keyframes loadingAfter {
+  0%   {transform:translateX(-50px);}
+  50%  {transform:translateX(50px);}
+  100% {transform:translateX(-50px);}
+}
+</style>
+
 </head>
 <body>
 
@@ -126,6 +191,13 @@
 
 </table>
 
+<br>
+<br>
+<div class="loading">
+  <span>  0% Commission </span>
+</div>
+
+		
 <script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-firestore.js"></script>
 <script>
