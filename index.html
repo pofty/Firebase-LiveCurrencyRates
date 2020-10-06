@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+#customers {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  text-align: center;
+  width: 250px;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  
+}
+
+
+/* #customers tr:nth-child(even){background-color: #f2f2f2;} */
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  background-color: black;
+  color: white;
+  text-align: center;
+}
+
+#customers td {
+
+  color: solid black;
+  height: 4px;
+  text-align: center;
+}
+
+.currencyImageAndName {
+  text-align: left;
+}
+</style>
+</head>
+<body>
+
+<table id="customers">
+  <tr>
+    <th style="width:85px">Currency</th>
+    <th style="width:35px">Buy</th>
+    <th style="width:35px">Sell</th>
+  </tr>
+
+  <tr>
+    <td class= "currencyImageAndName"><img src="https://static.wixstatic.com/media/21fc71_a830b757e8a54409b16539f154f5b274~mv2.png" alt=""  height=15 width=25 style="vertical-align:middle"> USD</td>
+    <td id="USDBUY"></td>
+    <td id= "USDSELL"></td>
+  </tr>
+  
+  <tr>
+    <td class= "currencyImageAndName"><img src="https://static.wixstatic.com/media/21fc71_737b17331b2140c49d9e5c22bd235208~mv2.png" alt=""  height=15 width=25 style="vertical-align:middle"> EUR</td>
+    <td id="EURBUY"></td>
+    <td id= "EURSELL"></td>
+  </tr>
+  
+    <tr>
+    <td class= "currencyImageAndName"><img src="https://static.wixstatic.com/media/21fc71_2edefaec1d894c76bb093583173c91c4~mv2.png" alt=""  height=15 width=25 style="vertical-align:middle"> PLN</td>
+    <td id="PLNBUY"></td>
+    <td id= "PLNSELL"></td>
+  </tr>
+  
+  </tr>
+    <tr>
+    <td class= "currencyImageAndName"><img src="https://static.wixstatic.com/media/21fc71_075e51b5de094671808ef6953f74357b~mv2.png" alt=""  height=15 width=25 style="vertical-align:middle"> CNY</td>
+    <td id="CNYBUY"></td>
+    <td id= "CNYSELL"></td>
+  </tr>
+ 
+    <tr>
+    <td class= "currencyImageAndName"><img src="https://static.wixstatic.com/media/21fc71_59773ee3c80642a4a87e639a8cc3efef~mv2.png" alt=""  height=15 width=25 style="vertical-align:middle"> SAR</td>
+    <td id="SARBUY"></td>
+    <td id= "SARSELL"></td>
+  </tr>
+ 
+
+    <tr>
+    <td class= "currencyImageAndName"><img src="https://static.wixstatic.com/media/21fc71_eadefdc083924e9292970bd433c9fe60~mv2.png" alt=""  height=15 width=25 style="vertical-align:middle"> CAD</td>
+    <td id="CADBUY"></td>
+    <td id= "CADSELL"></td>
+  </tr>
+ 
+
+    <tr>
+    <td class= "currencyImageAndName"><img src="https://static.wixstatic.com/media/21fc71_a85ee9b37b0d4845a9b091601d5c2ae5~mv2.png" alt=""  height=15 width=25 style="vertical-align:middle"> AED</td>
+    <td id="AEDBUY"></td>
+    <td id= "AEDSELL"></td>
+  </tr>
+  
+    <tr>
+    <td class= "currencyImageAndName"><img src="https://static.wixstatic.com/media/21fc71_cbdd6416532a4729a30386fe3976d66f~mv2.png" alt=""  height=15 width=25 style="vertical-align:middle"> CHF</td>
+    <td id="CHFBUY"></td>
+    <td id= "CHFSELL"></td>
+  </tr>
+  
+    <tr>
+    <td class= "currencyImageAndName"><img src="https://static.wixstatic.com/media/21fc71_c517c21615824d57bb1d6b47d712b58c~mv2.png" alt=""  height=15 width=25 style="vertical-align:middle"> TRY</td>
+    <td id="TRYBUY"></td>
+    <td id= "TRYSELL"></td>
+  </tr>
+  
+    <tr>
+    <td class= "currencyImageAndName"><img src="https://static.wixstatic.com/media/21fc71_7196e50c0ca943ca9592148c1896b37a~mv2.png" alt=""  height=15 width=25 style="vertical-align:middle"> JPY</td>
+    <td id="JPYBUY"></td>
+    <td id= "JPYSELL"></td>
+  </tr>
+  
+    <tr>
+    <td class= "currencyImageAndName"><img src="https://static.wixstatic.com/media/21fc71_42c7b67384cd406d837c6b91395dd7eb~mv2.png" alt=""  height=15 width=25 style="vertical-align:middle"> AUD</td>
+    <td id="AUDBUY"></td>
+    <td id= "AUDSELL"></td>
+  </tr>
+  
+    <tr>
+    <td class= "currencyImageAndName"><img src="https://static.wixstatic.com/media/21fc71_9d346e74067c473f852561298d613e71~mv2.png" alt=""  height=15 width=25 style="vertical-align:middle"> NZD</td>
+    <td id="NZDBUY"></td>
+    <td id= "NZDSELL"></td>
+  </tr>
+
+</table>
+
+<script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-firestore.js"></script>
+<script>
+
+  var firebaseConfig = {
+    apiKey: "AIzaSyDoZ6pUEYNjDP5nfmpKe81iT_cCmCnCveY",
+    authDomain: "move-money-wisely.firebaseapp.com",
+    databaseURL: "https://move-money-wisely.firebaseio.com",
+    projectId: "move-money-wisely",
+    storageBucket: "move-money-wisely.appspot.com",
+    messagingSenderId: "247342176052",
+    appId: "1:247342176052:web:92ff5a1a4ff6e37402b761"
+
+  };
+  firebase.initializeApp(firebaseConfig);
+
+var db = firebase.firestore()
+
+//USD
+  db.collection("Rates").doc("USDBUY")
+    .onSnapshot(function(doc) {
+		document.getElementById("USDBUY").innerHTML = doc.data().rate;
+    });
+    
+     db.collection("Rates").doc("USDSELL")
+    .onSnapshot(function(doc) {
+		document.getElementById("USDSELL").innerHTML = doc.data().rate;
+    });
+
+//EUR
+  db.collection("Rates").doc("EURBUY")
+    .onSnapshot(function(doc) {
+		document.getElementById("EURBUY").innerHTML = doc.data().rate;
+    });
+
+ db.collection("Rates").doc("EURSELL")
+    .onSnapshot(function(doc) {
+		document.getElementById("EURSELL").innerHTML = doc.data().rate;
+    });
+	
+//PLN
+  db.collection("Rates").doc("PLNBUY")
+    .onSnapshot(function(doc) {
+		document.getElementById("PLNBUY").innerHTML = doc.data().rate;
+    });
+
+ db.collection("Rates").doc("PLNSELL")
+    .onSnapshot(function(doc) {
+		document.getElementById("PLNSELL").innerHTML = doc.data().rate;
+    });
+	
+//CNY
+  db.collection("Rates").doc("CNYBUY")
+    .onSnapshot(function(doc) {
+		document.getElementById("CNYBUY").innerHTML = doc.data().rate;
+    });
+
+ db.collection("Rates").doc("CNYSELL")
+    .onSnapshot(function(doc) {
+		document.getElementById("CNYSELL").innerHTML = doc.data().rate;
+    });
+
+//SAR
+  db.collection("Rates").doc("SARBUY")
+    .onSnapshot(function(doc) {
+		document.getElementById("SARBUY").innerHTML = doc.data().rate;
+    });
+
+ db.collection("Rates").doc("SARSELL")
+    .onSnapshot(function(doc) {
+		document.getElementById("SARSELL").innerHTML = doc.data().rate;
+    });
+	
+
+//CAD
+  db.collection("Rates").doc("CADBUY")
+    .onSnapshot(function(doc) {
+		document.getElementById("CADBUY").innerHTML = doc.data().rate;
+    });
+
+ db.collection("Rates").doc("CADSELL")
+    .onSnapshot(function(doc) {
+		document.getElementById("CADSELL").innerHTML = doc.data().rate;
+    });
+	
+//AED
+  db.collection("Rates").doc("AEDBUY")
+    .onSnapshot(function(doc) {
+		document.getElementById("AEDBUY").innerHTML = doc.data().rate;
+    });
+
+ db.collection("Rates").doc("AEDSELL")
+    .onSnapshot(function(doc) {
+		document.getElementById("AEDSELL").innerHTML = doc.data().rate;
+    });
+	
+//CHF
+  db.collection("Rates").doc("CHFBUY")
+    .onSnapshot(function(doc) {
+		document.getElementById("CHFBUY").innerHTML = doc.data().rate;
+    });
+
+ db.collection("Rates").doc("CHFSELL")
+    .onSnapshot(function(doc) {
+		document.getElementById("CHFSELL").innerHTML = doc.data().rate;
+    });
+	
+//TRY
+  db.collection("Rates").doc("TRYBUY")
+    .onSnapshot(function(doc) {
+		document.getElementById("TRYBUY").innerHTML = doc.data().rate;
+    });
+
+ db.collection("Rates").doc("TRYSELL")
+    .onSnapshot(function(doc) {
+		document.getElementById("TRYSELL").innerHTML = doc.data().rate;
+    });
+	
+//JPY
+  db.collection("Rates").doc("JPYBUY")
+    .onSnapshot(function(doc) {
+		document.getElementById("JPYBUY").innerHTML = doc.data().rate;
+    });
+
+ db.collection("Rates").doc("JPYSELL")
+    .onSnapshot(function(doc) {
+		document.getElementById("JPYSELL").innerHTML = doc.data().rate;
+    });
+	
+//AUD
+  db.collection("Rates").doc("AUDBUY")
+    .onSnapshot(function(doc) {
+		document.getElementById("AUDBUY").innerHTML = doc.data().rate;
+    });
+
+ db.collection("Rates").doc("AUDSELL")
+    .onSnapshot(function(doc) {
+		document.getElementById("AUDSELL").innerHTML = doc.data().rate;
+    });
+	
+//NZD
+  db.collection("Rates").doc("NZDBUY")
+    .onSnapshot(function(doc) {
+		document.getElementById("NZDBUY").innerHTML = doc.data().rate;
+    });
+
+ db.collection("Rates").doc("NZDSELL")
+    .onSnapshot(function(doc) {
+		document.getElementById("NZDSELL").innerHTML = doc.data().rate;
+    });
+</script>
+</body>
+</html>
